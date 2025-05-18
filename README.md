@@ -99,6 +99,10 @@ npm run server
 ```
 The frontend will run at: http://localhost:3000
 
+## Database Access
+### MongoDB Compass
+mongodb+srv://elayoub407:MVmL7Axgvj4Ia4MR@hcams.8au6zot.mongodb.net/
+
 ## 🧪 Testing
 Testing includes manual validation of:
 
