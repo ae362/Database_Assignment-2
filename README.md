@@ -14,7 +14,7 @@ HCAMS is tailored to the requirements of the fictional **City Health Clinic**, a
 - Ayoub Elghayati 
 - Osama Sharkia
 - Rifaat Hossain
-- Indigo Basagoiti
+- Inigo Basagoiti
 - Alex Fraile Villamil
 
 ---
