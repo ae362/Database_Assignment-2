@@ -141,10 +141,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-DEFAULT_FROM_EMAIL = 'elayoub407@gmail.com'  # Replace with your SendGrid verified sender
+DEFAULT_FROM_EMAIL = 'elayoub407@gmail.com'  
 EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
-SENDGRID_API_KEY = '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'
+SENDGRID_API_KEY = 'SG.' # paste the key after the dot
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 MONGODB_URI = 'mongodb+srv://elayoub407:MVmL7Axgvj4Ia4MR@hcams.8au6zot.mongodb.net/'
