@@ -98,6 +98,7 @@ npm install framer-motion --legacy-peer-deps
 npm run server
 ```
 The frontend will run at: http://localhost:3000
+### ⚠️ Use the json file " user_credentials.json" to access different patients, doctors , admin
 
 ## Database Access
 ### MongoDB Compass
