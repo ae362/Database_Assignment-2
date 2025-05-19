@@ -183,8 +183,8 @@ export default function AdminAppointmentsPage() {
 
   const handleCancel = async (appointmentId: number) => {
     try {
-      const response = await fetchWithAuth(`${ENDPOINTS.appointments(appointmentId)}/cancel`, {
-        method: "POST",
+      const response = await fetchWithAuth(`${ENDPOINTS.appointments(appointmentId)}`, {
+        method: "DELETE",
       })
 
       if (!response.ok) throw new Error("Failed to cancel appointment")
