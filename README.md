@@ -13,7 +13,7 @@ HCAMS is tailored to the requirements of the fictional **City Health Clinic**, a
 
 - Ayoub Elghayati 
 - Osama Sharkia
-- Rifaat Hossain
+- Rifat Hossain
 - Inigo Basagoiti
 - Alex Fraile Villamil
 
@@ -102,6 +102,9 @@ The frontend will run at: http://localhost:3000
 
 ## Database Access
 ### MongoDB Compass
+1.Download mongodb compass 
+2.Add new connection
+3.add the url below:
 mongodb+srv://elayoub407:MVmL7Axgvj4Ia4MR@hcams.8au6zot.mongodb.net/
 
 ## 🧪 Testing
