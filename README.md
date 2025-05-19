@@ -95,7 +95,7 @@ The backend will run at: http://localhost:8000
 cd frontend
 npm install --legacy-peer-deps
 npm install framer-motion --legacy-peer-deps
-npm run server
+npm run dev
 ```
 The frontend will run at: http://localhost:3000
 ### ⚠️ You can create your own patient by registering " use an existing email to test receiving email after booking (spam box) " or Use the json file " user_credentials.json" to access different patients, doctors , admin accounts
