@@ -708,7 +708,19 @@ export default function NewAppointment() {
       debugLog += `Available time slots: ${JSON.stringify(availableTimeSlots)}\n`
       setAvailableSlots(availableTimeSlots)
 
-      if (availableTimeSlots.length === 0) {
+      // Add this check for today with filtered time slots
+      const isToday =
+        selectedDate.getDate() === new Date().getDate() &&
+        selectedDate.getMonth() === new Date().getMonth() &&
+        selectedDate.getFullYear() === new Date().getFullYear()
+
+      if (isToday && slots.length < 16) {
+        // 16 is the typical number of 30-min slots in an 8-hour day
+        debugLog += "Some time slots for today have been filtered out because they are in the past\n"
+        if (availableTimeSlots.length === 0) {
+          setError("No available time slots remaining for today. Please select another date.")
+        }
+      } else if (availableTimeSlots.length === 0) {
         setError("No available time slots for this date")
         debugLog += "No available time slots for this date\n"
       } else if (availableTimeSlots.every((slot) => !slot.is_available)) {
@@ -730,6 +742,9 @@ export default function NewAppointment() {
   // Generate time slots from start to end time in 30-minute increments
   function generateTimeSlots(date: Date, startTime: string, endTime: string): string[] {
     const slots: string[] = []
+    const now = new Date() // Get current date and time
+    const isToday =
+      date.getDate() === now.getDate() && date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear()
 
     try {
       console.log(`Generating time slots for date: ${date}, start: ${startTime}, end: ${endTime}`)
@@ -764,7 +779,15 @@ export default function NewAppointment() {
       // Generate slots in 30-minute increments
       let current = start
       while (current < end) {
-        slots.push(format(current, "HH:mm"))
+        // If today, only include future time slots (with a small buffer)
+        const slotTime = format(current, "HH:mm")
+
+        // For today, check if the time slot is in the future
+        // Add a 15-minute buffer to account for the booking process
+        if (!isToday || (isToday && current > new Date(now.getTime() + 15 * 60000))) {
+          slots.push(slotTime)
+        }
+
         current = addMinutes(current, 30)
       }
 
@@ -781,7 +804,13 @@ export default function NewAppointment() {
 
       let current = defaultStart
       while (current < defaultEnd) {
-        slots.push(format(current, "HH:mm"))
+        const slotTime = format(current, "HH:mm")
+
+        // For today, check if the time slot is in the future (with buffer)
+        if (!isToday || (isToday && current > new Date(now.getTime() + 15 * 60000))) {
+          slots.push(slotTime)
+        }
+
         current = addMinutes(current, 30)
       }
 
@@ -791,10 +820,12 @@ export default function NewAppointment() {
 
   // This function determines if a date should be disabled in the calendar
   const isDateDisabled = (date: Date): boolean => {
-    // Check if it's in the past
+    // Check if it's in the past (more strict check)
     const today = new Date()
     today.setHours(0, 0, 0, 0)
-    if (date < today) return true
+    const selectedDate = new Date(date)
+    selectedDate.setHours(0, 0, 0, 0)
+    if (selectedDate < today) return true
 
     // Check if there's an exception for this date
     const hasException = exceptions.some((exception) => {
