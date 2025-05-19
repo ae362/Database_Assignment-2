@@ -222,8 +222,8 @@ export function AppointmentList() {
         throw new Error("No authentication token found")
       }
 
-      const response = await fetch(`${ENDPOINTS.appointments(id)}/cancel/`, {
-        method: "POST",
+      const response = await fetch(`${ENDPOINTS.appointments(id)}`, {
+        method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`, // Changed from Token to Bearer for MongoDB
           "Content-Type": "application/json",
