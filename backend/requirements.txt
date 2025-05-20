@@ -68,10 +68,6 @@ sniffio
 sqlparse
 starkbank-ecdsa
 sympy
-tensorboard
-tensorboard-data-server
-tensorflow
-tensorflow-io-gcs-filesystem
 termcolor
 tf_keras
 threadpoolctl
